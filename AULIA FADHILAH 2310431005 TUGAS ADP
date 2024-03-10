@@ -1,42 +1,4 @@
 soal no 1
-
-#include <iostream>
-using namespace std;
-
-int main() {
-    // Data mahasiswa
-    string nama = "Aulia Fadhilah";
-    string noBP = "2310431005";
-
-    float panjangSisiAlas, tinggiLimas;
-
-    // Input panjang sisi alas limas
-    cout << "Masukkan panjang sisi alas limas: ";
-    cin >> panjangSisiAlas;
-
-    // Input tinggi limas
-    cout << "Masukkan tinggi limas: ";
-    cin >> tinggiLimas;
-
-    // Hitung volume limas
-    float volumeLimas = (1.0 / 3) * panjangSisiAlas * panjangSisiAlas * tinggiLimas;
-
-    // Hitung luas permukaan limas
-    float luasPermukaanLimas = panjangSisiAlas * panjangSisiAlas + 4 * (0.5 * panjangSisiAlas * tinggiLimas);
-
-    // Output hasil perhitungan
-    cout << "\nData Mahasiswa:\n";
-    cout << "Nama: " << nama << endl;
-    cout << "Nomor BP: " << noBP << endl;
-
-    cout << "\nVolume limas: " << volumeLimas << endl;
-    cout << "Luas permukaan limas: " << luasPermukaanLimas << endl;
-
-    return 0;
-}
-
- soal no 2
-
 #include <iostream>
 #include <string>
 
@@ -91,4 +53,43 @@ int main() {
     cout << "Total SKS: " << totalSKS << endl;
     cout << "Total Nilai SKS: " << totalNilaiSKS << endl;
     cout << "IP Semester: " << ipsemester << endl;
+}
+
+
+    
+ soal no 2
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    // Data mahasiswa
+    string nama = "Aulia Fadhilah";
+    string noBP = "2310431005";
+
+    float panjangSisiAlas, tinggiLimas;
+
+    // Input panjang sisi alas limas
+    cout << "Masukkan panjang sisi alas limas: ";
+    cin >> panjangSisiAlas;
+
+    // Input tinggi limas
+    cout << "Masukkan tinggi limas: ";
+    cin >> tinggiLimas;
+
+    // Hitung volume limas
+    float volumeLimas = (1.0 / 3) * panjangSisiAlas * panjangSisiAlas * tinggiLimas;
+
+    // Hitung luas permukaan limas
+    float luasPermukaanLimas = panjangSisiAlas * panjangSisiAlas + 4 * (0.5 * panjangSisiAlas * tinggiLimas);
+
+    // Output hasil perhitungan
+    cout << "Data Mahasiswa";
+    cout << "Nama: " << nama << endl;
+    cout << "Nomor BP: " << noBP << endl;
+
+    cout << "Volume limas: " << volumeLimas << endl;
+    cout << "Luas permukaan limas: " << luasPermukaanLimas << endl;
+
+    return 0;
 }
