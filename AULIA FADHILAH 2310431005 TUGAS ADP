@@ -1,0 +1,94 @@
+soal no 1
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Data mahasiswa
+    string nama = "Aulia Fadhilah";
+    string noBP = "2310431005";
+
+    float panjangSisiAlas, tinggiLimas;
+
+    // Input panjang sisi alas limas
+    cout << "Masukkan panjang sisi alas limas: ";
+    cin >> panjangSisiAlas;
+
+    // Input tinggi limas
+    cout << "Masukkan tinggi limas: ";
+    cin >> tinggiLimas;
+
+    // Hitung volume limas
+    float volumeLimas = (1.0 / 3) * panjangSisiAlas * panjangSisiAlas * tinggiLimas;
+
+    // Hitung luas permukaan limas
+    float luasPermukaanLimas = panjangSisiAlas * panjangSisiAlas + 4 * (0.5 * panjangSisiAlas * tinggiLimas);
+
+    // Output hasil perhitungan
+    cout << "\nData Mahasiswa:\n";
+    cout << "Nama: " << nama << endl;
+    cout << "Nomor BP: " << noBP << endl;
+
+    cout << "\nVolume limas: " << volumeLimas << endl;
+    cout << "Luas permukaan limas: " << luasPermukaanLimas << endl;
+
+    return 0;
+}
+
+ soal no 2
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+float ipsemester, totalSKS, jumlahmatakuliah, totalNilaiSKS;
+
+int main() {
+    string nama = "Aulia Fadhilah";
+    string noBP = "2310431005";
+
+    cout << "Masukkan jumlah mata kuliah = "; cin >> jumlahmatakuliah;
+    cout << "Masukkan jumlah sks mata kuliah yang diambil pada semester 1: " << endl;
+
+
+    int sksmatakuliah1,sksmatakuliah2,sksmatakuliah3,sksmatakuliah4,
+        sksmatakuliah5,sksmatakuliah6,sksmatakuliah7,sksmatakuliah8;
+
+    cout << "SKS Mata Kuliah ke-1: "; cin >> sksmatakuliah1;
+    cout << "SKS Mata Kuliah ke-2: "; cin >> sksmatakuliah2;
+    cout << "SKS Mata Kuliah ke-3: "; cin >> sksmatakuliah3;
+    cout << "SKS Mata Kuliah ke-4: "; cin >> sksmatakuliah4;
+    cout << "SKS Mata Kuliah ke-5: "; cin >> sksmatakuliah5;
+    cout << "SKS Mata Kuliah ke-6: "; cin >> sksmatakuliah6;
+    cout << "SKS Mata Kuliah ke-7: "; cin >> sksmatakuliah7;
+    cout << "SKS Mata Kuliah ke-8: "; cin >> sksmatakuliah8;
+
+    float totalSKS = sksmatakuliah1 + sksmatakuliah2 + sksmatakuliah3 + sksmatakuliah4 +
+                        sksmatakuliah5 + sksmatakuliah6 + sksmatakuliah7 + sksmatakuliah8;
+
+    cout << "Masukkan nilai mata kuliah yang diambil pada semester 1:" << endl;
+
+
+    float nilaiMataKuliah1, nilaiMataKuliah2, nilaiMataKuliah3, nilaiMataKuliah4,
+          nilaiMataKuliah5, nilaiMataKuliah6, nilaiMataKuliah7, nilaiMataKuliah8;
+
+    cout << "Mata kuliah ke-1: "; cin >> nilaiMataKuliah1;
+    cout << "Mata kuliah ke-2: "; cin >> nilaiMataKuliah2;
+    cout << "Mata kuliah ke-3: "; cin >> nilaiMataKuliah3;
+    cout << "Mata kuliah ke-4: "; cin >> nilaiMataKuliah4;
+    cout << "Mata kuliah ke-5: "; cin >> nilaiMataKuliah5;
+    cout << "Mata kuliah ke-6: "; cin >> nilaiMataKuliah6;
+    cout << "Mata kuliah ke-7: "; cin >> nilaiMataKuliah7;
+    cout << "Mata kuliah ke-8: "; cin >> nilaiMataKuliah8;
+
+    float totalNilaiSKS = (nilaiMataKuliah1 + nilaiMataKuliah2 + nilaiMataKuliah3 + nilaiMataKuliah4 +
+                            nilaiMataKuliah5 + nilaiMataKuliah6 + nilaiMataKuliah7 + nilaiMataKuliah8)/jumlahmatakuliah;
+    float ipsemester = totalNilaiSKS/totalSKS;
+
+    cout << "Data Nilai Mata Kuliah Semester 1";
+    cout << "Nama: " << nama << endl;
+    cout << "Nomor BP: " << noBP << endl;
+    cout << "Total SKS: " << totalSKS << endl;
+    cout << "Total Nilai SKS: " << totalNilaiSKS << endl;
+    cout << "IP Semester: " << ipsemester << endl;
+}
