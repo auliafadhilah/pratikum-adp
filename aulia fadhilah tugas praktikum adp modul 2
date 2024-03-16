@@ -33,7 +33,7 @@ int main(){
      } else if (pilihan_tujuan == 5){
         harga_tujuan = 120000;
      } else if (pilihan_tujuan == 6){
-        harga_tujuan = 150000;
+        harga_tujuan = 160000;
      } else {
         cout <<" pilihan tidak ada";
         }
