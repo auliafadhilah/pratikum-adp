@@ -1,0 +1,20 @@
+print("nama : Aulia Fadhilah")
+print("nim : 2310431005")
+
+while True:
+    n = int(input("Masukkan nilai n (3-199, bukan 100-109): "))
+    if 3 <= n <= 199 and (n < 100 or n > 109):
+        break
+
+f1, f2 = 1, 1
+fn = 0
+total = f1 + f2
+
+for i in range(3, n+1):
+    fn = f1 + f2
+    total += fn
+    f1 = f2
+    f2 = fn
+
+print(f"Nilai fibonacci ke-{n} adalah {fn}")
+print(f"Jumlah dari f1, f2, ..., fn adalah {total}")
