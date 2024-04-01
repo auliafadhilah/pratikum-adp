@@ -1,0 +1,17 @@
+print("Nama : Aulia Fadhilah ")
+print("NIM  : 2310431005")
+print("shift: 2")
+
+teks_lirik = input("Masukkan teks lirik lagu (3 kalimat): ")
+
+teks_baru = ''  
+for lirik in teks_lirik:  
+    lirik_baru = ''  
+    for huruf in lirik:  
+        if huruf in 'AIUEO': 
+            huruf = 'I'  
+        elif huruf in 'aiueo':
+            huruf = 'i' 
+    teks_baru += huruf  
+
+print("hasilnya:", teks_baru)
