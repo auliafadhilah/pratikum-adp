@@ -1,0 +1,108 @@
+C++
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    cout << "NAMA         : AULIA FADHILAH" << endl;
+    cout << "NIM          : 2310431005" << endl;
+    cout << "SHIFT        : 02" << endl;
+    cout << endl;
+    cout << "          TABEL FUNGSI   " << endl;
+    cout << "f(x)  = 3x^2 + 7x - 2 jika x >= 0" << endl;
+    cout << "      = 2x^2 - 5x - 4 jika x < 0" << endl;
+    cout << "g(x)  = (f(x))^2 - (f(x))^(1/2)" << endl;
+    cout << "h(x)  = f(x) * g(x)" << endl;
+
+    while (true) {
+        int n;
+        cout << "\nInput banyak data n = ";
+        cin >> n;
+
+        float nilai_x[n], fx[n], gx[n], hx[n];
+
+        for (int i = 0; i < n; ++i) {
+            cout << "Input nilai x ke-" << i+1 << " = ";
+            cin >> nilai_x[i];
+        }
+
+        cout << "\nTabel Hasil:" << endl;
+        cout << "+------+---------------+-----------------------+-----------------------+-----------------------+" << endl;
+        cout << "| No   |      x        |        f(x)           |        g(x)           |        h(x)           |" << endl;
+        cout << "+------+---------------+-----------------------+-----------------------+-----------------------+" << endl;
+
+        for (int i = 0; i < n; ++i) {
+            float x = nilai_x[i];
+            if (x >= 0) {
+                fx[i] = 3 * pow(x, 2) + 7 * x - 2;
+                gx[i] = fx[i] * 2 - sqrt(fx[i]);
+                hx[i] = fx[i] * gx[i];
+            } else {
+                fx[i] = 2 * pow(x, 2) - 5 * x - 4;
+                gx[i] = fx[i] * 2 - sqrt(fx[i]);
+                hx[i] = fx[i] * gx[i];
+            }
+
+            printf("| %4d | x[%d]=%3d      | fx[%d]=%15.2f | gx[%d]=%15.2f | hx[%d]=%15.2f |\n", i+1, i+1, (int)x, i+1, fx[i], i+1, gx[i], i+1, hx[i]);
+        }
+
+        cout << "+------+---------------+-----------------------+-----------------------+-----------------------+" << endl;
+
+        char lagi;
+        cout << "\nInput nilai x lagi? (y/n) ";
+        cin >> lagi;
+        if ((lagi) != 'y') {
+            break;
+        }
+    }
+}
+
+PYTHON
+
+print("NAMA         : AULIA FADHILAH")
+print("NIM          : 2310431005")
+print("SHIFT        : 02")
+print()
+print("          TABEL FUNGSI   ")
+print("f(x)  = 3x^2 + 7x - 2 jika x >= 0")
+print("      = 2x^2 - 5x - 4 jika x < 0")
+print("g(x)  = (f(x))^2 - (f(x))^(1/2)")
+print("h(x)  = f(x) * g(x)")
+
+while True:
+    n = int(input("\nInput banyak data n = "))
+    nilai_x = [0] * n 
+    fx = [0] * n
+    gx = [0] * n
+    hx = [0] * n
+
+    for i in range(n):
+        nilai_x[i] = float(input(f"Input nilai x ke-{i+1} = "))
+
+    print("\nTabel Hasil:")
+    print("+------+--------------+----------------------+----------------------+------------------------+")
+    print("| No   |      x       |        f(x)          |        g(x)          |        h(x)            |")
+    print("+------+--------------+----------------------+----------------------+------------------------+")
+
+    for i in range(n):
+        x = nilai_x[i]
+        
+        if x >= 0:
+            fx[i] = 3*x**2 + 7*x - 2
+            gx[i] = fx[i]*2 - fx[i]**(1/2)
+            hx[i] = fx[i] * gx[i]
+        else:
+            fx[i] = 2*x**2 - 5*x - 4
+            gx[i] = fx[i]*2 - fx[i]**(1/2)
+            hx[i] = fx[i] * gx[i]
+
+        
+        print(f"| {i+1:<4} | x[{i+1}]={int(x):<3}     | fx[{i+1}]={fx[i]:<15.2f}| gx[{i+1}]={gx[i]:<15.2f}| hx[{i+1}]={hx[i]:<15.2f}  |")
+
+    print("+------+--------------+----------------------+----------------------+------------------------+")
+
+    lagi = input("\nInput nilai x lagi? (y/n) ")
+    if lagi != 'y' and lagi != 'Y':
+        break
