@@ -1,0 +1,64 @@
+print("Nama : Aulia Fadhilah")
+print("Nim  : 2310431005")
+print("shift: 2")
+print()
+# Output 1 (tabel data nilai)
+print("---Data Nilai Ujian Mahasiswa Universitas Andalas---")
+print()
+n = ["Aulia ", "Azaria ", "Adri"]
+m = ["kalkulus", "geonal", "matdis"]
+nilai = [
+    [90, 90, 78],
+    [93, 88, 76],
+    [95, 67, 79]
+]
+
+print(f"{'Nama Mahasiswa':<15} |", end="")
+for mata_kuliah in m:
+    print(f"{mata_kuliah:<10} |", end="")
+print("\n" + "-"*(43 + 3*len(m) + 1)) 
+
+for i in range(len(n)):
+    print(f"{n[i]:<15} |", end="")
+    for j in range(len(m)):
+        print(f"{nilai[i][j]:<10} |", end="")
+    print()
+
+# Output 2 (rata-rata nilai)
+print("\n---Rata-rata Nilai Mahasiswa---")
+for i in range(len(n)):
+    total_nilai = sum(nilai[i])
+    rata_rata = total_nilai / len(m)
+    print(f"{n[i]}: {rata_rata}")
+
+# Output 3 (nilai tertinggi dan terendah)
+print("\n---Nilai Tertinggi dan Terendah---")
+for i in range(len(m)):
+    mata_kuliah = m[i]
+    nilai_mata_kuliah = [nilai[j][i] for j in range(len(n))]
+    nilai_tertinggi = nilai_mata_kuliah[0]
+    nilai_terendah = nilai_mata_kuliah[0]
+    nilai_tertinggi_mahasiswa = [n[0]]  
+    nilai_terendah_mahasiswa = [n[0]]  
+    for j in range(1, len(nilai_mata_kuliah)):
+        if nilai_mata_kuliah[j] > nilai_tertinggi:
+            nilai_tertinggi = nilai_mata_kuliah[j]
+            nilai_tertinggi_mahasiswa = [n[j]]
+        elif nilai_mata_kuliah[j] == nilai_tertinggi:
+            nilai_tertinggi_mahasiswa.append(n[j])
+        
+        if nilai_mata_kuliah[j] < nilai_terendah:
+            nilai_terendah= nilai_mata_kuliah[j]
+            nilai_terendah_mahasiswa = [n[j]]
+        elif nilai_mata_kuliah[j] == nilai_terendah:
+            nilai_terendah_mahasiswa.append(n[j])
+    
+    print(f"{mata_kuliah}:")
+    print(f"  Nilai Tertinggi: {nilai_tertinggi} oleh", end=" ")
+    for mahasiswa in nilai_tertinggi_mahasiswa:
+        print(mahasiswa, end=" ")
+    print()
+    print(f"  Nilai Terendah: {nilai_terendah} oleh", end=" ")
+    for mahasiswa in nilai_terendah_mahasiswa:
+        print(mahasiswa, end=" ")
+    print()
