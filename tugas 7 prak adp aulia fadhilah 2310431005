@@ -1,0 +1,38 @@
+print("Nama : Aulia Fadhilah")
+print("Nim  : 2310431005")
+print("shift: 2")
+print("-----------------------")
+
+def konversi_suhu(suhudansatuan):
+    suhu, satuan = float(suhudansatuan[:-1]), suhudansatuan[-1]
+
+    konversi = {
+        'C': {'Reaumur': suhu * 4/5, 'Fahrenheit': suhu * 9/5 + 32, 'Kelvin': suhu + 273.15},
+        'R': {'Celcius': suhu * 5/4, 'Fahrenheit': suhu * 9/4 + 32, 'Kelvin': suhu * 5/4 + 273.15},
+        'F': {'Celcius': (suhu - 32) * 5/9, 'Reaumur': (suhu - 32) * 4/9, 'Kelvin': (suhu - 32) * 5/9 + 273.15},
+        'K': {'Celcius': suhu - 273.15, 'Reaumur': (suhu - 273.15) * 4/5, 'Fahrenheit': (suhu - 273.15) * 9/5 + 32}
+    }
+
+    if satuan not in konversi:
+        print("Satuan suhu tidak valid.")
+        return
+
+    batas_minimum = {'C': 0, 'R': 0, 'F': 32, 'K': 273.15}
+    batas_maksimum = {'C': 100, 'R': 80, 'F': 212, 'K': 373.15}
+    if not (batas_minimum[satuan] <= suhu <= batas_maksimum[satuan]):
+        print("Suhu tidak sesuai.")
+        return
+
+    print(f"Suhu {suhu} derajat {satuan} dapat dikonversi menjadi:")
+    print("{:<12} | {:<15}".format("Satuan suhu", "Derajat suhu"))  
+    for satuan_suhu in konversi[satuan]:
+        nilai_konversi = konversi[satuan][satuan_suhu]
+        print("-" * 27)
+        print("{:<12} | {:<15.2f}".format(satuan_suhu, nilai_konversi))
+    
+    print("-" * 27)  
+    print()  
+
+suhudansatuan = input("Masukkan suhu dan satuan suhu : ")
+konversi_suhu(suhudansatuan)
+print("terimakasih")
