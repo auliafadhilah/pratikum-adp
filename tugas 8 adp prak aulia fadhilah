@@ -1,0 +1,67 @@
+print("Nama : Aulia Fadhilah")
+print("Nim  : 2310431005")
+print("shift: 2")
+print("-----------------------")
+
+file_aul = "data.buku.txt"
+open(file_aul, "a").close()
+buku = {}
+with open(file_aul, "r") as file:
+    for line in file:
+        if line.strip():
+            judul, penulis, penerbit, tahunterbit = line.strip().split('|')
+            buku[judul] = (penulis, penerbit, tahunterbit)
+
+def simpan_buku(buku):
+    with open(file_aul, "w") as file:  
+        for judul, (penulis, penerbit, tahunterbit) in buku.items():
+            file.write(f"{judul}|{penulis}|{penerbit}|{tahunterbit}\n")
+
+def menambah_buku(buku):
+    judul = input("Masukkan Judul Buku: ")
+    penulis = input("Masukkan Nama Penulis: ")
+    penerbit = input("Masukkan Nama Penerbit: ")
+    tahunterbit = input("Masukkan Tahun Terbit: ")
+
+    buku[judul] = (penulis, penerbit, tahunterbit)
+    simpan_buku(buku)
+    print("Buku berhasil ditambahkan!\n")
+
+def menghapus_buku(buku):
+    judul = input("Masukkan Judul Buku yang Ingin Dihapus: ")
+    if judul in buku:
+        del buku[judul]
+        simpan_buku(buku)
+        print("Buku telah berhasil dihapus!\n")
+    else:
+        print("Buku tidak dapat ditemukan.\n")
+
+def menampilkan_buku(buku):
+    if buku:
+        for judul, (penulis, penerbit, tahunterbit) in buku.items():
+            print(f"Judul: {judul}")
+            print(f"  Penulis: {penulis}")
+            print(f"  Penerbit: {penerbit}")
+            print(f"  Tahun Terbit: {tahunterbit}")
+    else:
+        print("tidak ada buku yang disimpan.\n")
+
+while True:
+    print("*** Menu Buku ***")
+    print("1. Tambah Buku")
+    print("2. Hapus Buku")
+    print("3. Tampilkan Buku")
+    print("4. Keluar")
+
+    pilih = input("Pilih menu: ")
+
+    if pilih == "1":
+        menambah_buku(buku)
+    elif pilih == "2":
+        menghapus_buku(buku)
+    elif pilih == "3":
+        menampilkan_buku(buku)
+    elif pilih == "4":
+        break
+    else:
+        print("Pilihan tidak valid. Silakan coba lagi.\n")
