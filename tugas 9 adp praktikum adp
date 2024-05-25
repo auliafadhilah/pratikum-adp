@@ -1,0 +1,51 @@
+print("Nama : Aulia Fadhilah")
+print("Nim  : 2310431005")
+print("shift: 2")
+print("----------------------------------------")
+
+from termcolor import colored, cprint
+
+blue = "blue"
+white = "white"
+yellow = "yellow"
+
+visa_semogabisa = [
+    " V   V  III   SSS       A   ",
+    " V   V   I   S         A A  ",
+    " V   V   I    S       A   A ",
+    " V   V   I     S     AAAAAAA ",
+    "  V V    I      S   A       A ",
+    "   V    III  SSS   A         A  "
+]
+
+baris = 5  
+kolom = 8  
+
+
+white_warna = 15 // 2
+blue_warna = (15 - white_warna) // 2
+yellow_warna = 15 - white_warna - blue_warna
+
+latarnya = [["" for _ in range(45)] for _ in range(15)]
+
+for i in range(15):
+    for j in range(45):
+        if i < blue_warna:
+            latarnya[i][j] = blue
+        elif i < blue_warna + white_warna:
+            latarnya[i][j] = white
+        else:
+            latarnya[i][j] = yellow
+
+for i in range(len(visa_semogabisa)):
+    for j in range(len(visa_semogabisa[i])):
+        if visa_semogabisa[i][j] != ' ':
+            batas = baris + i
+            jaraknya = kolom + j
+            if blue_warna <= batas < blue_warna + white_warna:  
+                latarnya [batas][jaraknya] = blue
+
+for i in range(15):
+    for j in range(45):
+        cprint(" ", latarnya[i][j], "on_" + latarnya[i][j], end="")
+    print()
