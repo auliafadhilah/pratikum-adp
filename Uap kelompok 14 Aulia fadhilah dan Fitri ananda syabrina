@@ -1,0 +1,219 @@
+import random
+import os
+import time
+from termcolor import colored, cprint
+
+def bersihkan_layar():
+    os.system('cls')
+
+def teks_tengah(text, width):
+    return text.center(width)
+
+def buat_akun(nama, nik, pin, rek, saldo):
+    with open('akun.txt', 'a') as file:
+        file.write(f'{nama},{nik},{pin},{rek},{saldo}\n')
+
+def cek_pin():
+    data = {}
+    if not os.path.exists('akun.txt'):
+        return data
+    with open('akun.txt', 'r') as file:
+        for line in file:
+            cek = line.strip().split(',')
+            nama_cek = cek[0]
+            pin_cek = cek[2]
+            data[nama_cek] = pin_cek
+    return data
+
+def cek_nama_pin(data, nama, pin):
+    return nama in data and data[nama] == str(pin)
+
+def cek_saldo(nama):
+    if not os.path.exists('akun.txt'):
+        print(colored("Akun tidak ditemukan.", "red"))
+        return None
+    with open('akun.txt', 'r') as file:
+        for line in file:
+            data = line.strip().split(',')
+            if data[0] == nama:
+                saldo = data[4]
+                print(colored(f"Sisa Saldo anda adalah Rp. {saldo}", "green"))
+                return saldo
+        print(colored("Akun tidak ditemukan.", "red"))
+        return None
+
+def saldo_terbaru(nama, saldo_baru):
+    if not os.path.exists('akun.txt'):
+        return
+    with open('akun.txt', 'r') as file:
+        lines = file.readlines()
+    with open('akun.txt', 'w') as file:
+        for line in lines:
+            data = line.strip().split(',')
+            if data[0] == nama:
+                line = f"{data[0]},{data[1]},{data[2]},{data[3]},{saldo_baru}\n"
+            file.write(line)
+
+def transfer_uang():
+    print(colored("Untuk Mentransfer Uang Silahkan Masukan No Rekening Tujuan", "cyan"))
+    no_rek = input("Masukan No Rekening Tujuan: ")
+    nominal = int(input("Masukkan nominal uang yang akan ditransfer: "))
+    nama_pengirim = input("Masukkan Nama Anda: ")
+    saldo_pengirim = cek_saldo(nama_pengirim)
+     
+    if saldo_pengirim: 
+        saldo_pengirim = int(saldo_pengirim)
+        time.sleep(1)
+        if saldo_pengirim >= nominal: 
+            nama_penerima = None
+            if not os.path.exists('akun.txt'):
+                print(colored("Nomor rekening tujuan tidak ditemukan.", "red"))
+                return
+            with open('akun.txt', 'r') as file:
+                for line in file:
+                    data = line.strip().split(',')
+                    if data[3] == no_rek:
+                        nama_penerima = data[0]
+                        saldo_penerima = int(data[4])
+                        time.sleep(1)
+                        break           
+            if nama_penerima:  
+                saldo_pengirim_baru = saldo_pengirim - nominal
+                time.sleep(1)
+                saldo_penerima_baru = saldo_penerima + nominal
+                time.sleep(1)
+                saldo_terbaru(nama_pengirim, saldo_pengirim_baru)
+                saldo_terbaru(nama_penerima, saldo_penerima_baru)
+                time.sleep(1)
+                print(colored(f"Transfer sebesar Rp. {nominal} kepada {nama_penerima} berhasil dilakukan.", "green"))
+                print(colored(f"Sisa saldo Anda sekarang adalah Rp. {saldo_pengirim_baru}", "green"))
+            else:
+                print(colored("Nomor rekening tujuan tidak ditemukan.", "red"))
+        else:
+            print(colored("Saldo tidak mencukupi.", "red"))
+    else:
+        print(colored("Nama pengirim tidak ditemukan.", "red"))
+
+def setor_uang():
+    print(colored("Masukkan nominal uang yang akan disetor.", "cyan"))
+    nominal = int(input("Nominal uang: "))
+    nama = input("Masukkan Nama: ")
+    saldo = cek_saldo(nama)
+    if saldo is not None:
+        saldo_baru = int(saldo) + nominal
+        saldo_terbaru(nama, saldo_baru)
+        print(colored(f"Setoran sebesar Rp. {nominal} berhasil dilakukan.", "green"))
+        print(colored(f"Sisa saldo anda sekarang adalah Rp. {saldo_baru}", "green"))
+
+def tarik_uang():
+    print(colored("Masukkan nominal uang yang akan ditarik.", "cyan"))
+    nominal = int(input("Nominal uang: "))
+    nama = input("Masukkan Nama: ")
+    saldo = cek_saldo(nama)
+    if saldo is not None:
+        saldo = int(saldo)
+        
+        if saldo >= nominal:
+            saldo_baru = saldo - nominal
+            saldo_terbaru(nama, saldo_baru)
+            print(colored(f"Penarikan sebesar Rp. {nominal} berhasil dilakukan.", "green"))
+            print(colored(f"Sisa saldo Anda sekarang adalah Rp. {saldo_baru}", "green"))
+        else:
+            print(colored("Saldo tidak mencukupi untuk melakukan penarikan.", "red"))
+    else:
+        print(colored("Nama pengguna tidak ditemukan.", "red"))
+
+def animasi_loading():
+    bersihkan_layar()
+    teks_loading = "LOADING"
+    lebar = os.get_terminal_size().columns  
+    for i in range(11):
+        bersihkan_layar()
+        cprint(teks_tengah(teks_loading, lebar), 'cyan')  
+        gaya = "[" + "." * i + " " * (10 - i) + "]"
+        print(colored(teks_tengah(gaya, lebar), "cyan"))  
+        time.sleep(0.3)
+    bersihkan_layar()
+
+def animasi_keluar():
+    bersihkan_layar()
+    teks_keluar = "TERIMA KASIH"
+    lebar = os.get_terminal_size().columns  
+    for i in range(11):
+        bersihkan_layar()
+        cprint(teks_tengah(teks_keluar, lebar), 'cyan')  
+        gaya = "[" + "." * i + " " * (10 - i) + "]"
+        print(colored(teks_tengah(gaya, lebar), "cyan"))  
+        time.sleep(0.2)
+    bersihkan_layar()
+    time.sleep(1)
+
+animasi_loading()
+
+while True:
+    bersihkan_layar()
+    print(colored("1. Membuat Akun ATM", "yellow"))
+    print(colored("2. Masuk Akun", "yellow"))
+    print(colored("3. Keluar", "yellow"))
+    pilih = input(colored('Pilih = ', "yellow"))
+
+    if pilih == '1':
+        bersihkan_layar()
+        nama = input("Masukkan Nama: ")
+        nik = input("Masukkan NIK: ")
+        pin = int(input("Masukkan PIN: "))
+        rek = random.randint(1000000000, 10000000000)
+        saldo = 0
+        buat_akun(nama, nik, pin, rek, saldo)
+        print(colored(f"Akun berhasil dibuat! no rek anda {rek}", "green"))
+        input()
+
+    elif pilih == '2':
+        bersihkan_layar()
+        data = cek_pin()
+        nama_log = input("Masukkan Nama: ")
+        pin_log = int(input("Masukkan PIN: "))
+        if cek_nama_pin(data, nama_log, pin_log):
+            print(colored("Nama dan pin cocok.", "green"))
+            time.sleep(1)
+            while True:   
+                bersihkan_layar()
+                komentar = [
+                    ["SELAMAT DATANG DI ATM BANK"],
+                    ["1. Cek Saldo","2. Setor uang","3. Transfer Uang","4. Tarik uang","5. Keluar ATM"]
+                ]
+                print(colored(komentar[0][0], "cyan"))
+                print(colored(komentar[1][0], "yellow"))
+                print(colored(komentar[1][1], "yellow"))
+                print(colored(komentar[1][2], "yellow"))
+                print(colored(komentar[1][3], "yellow"))
+                print(colored(komentar[1][4], "yellow"))
+                a = int(input(colored("Silahkan pilih menu: ", "yellow")))
+                if a == 1:
+                    cek_saldo(nama_log)
+                    input()  
+
+                elif a == 2:
+                    setor_uang()
+                    input()                  
+                     
+                elif a == 3:
+                    transfer_uang()
+                    input()
+
+                elif a == 4:
+                    tarik_uang()
+                    input()
+
+                elif a == 5:
+                    animasi_keluar()
+                    print(colored("Terima kasih telah menggunakan layanan ATM. Sampai jumpa lagi!", "cyan"))
+                    exit()
+
+        else:
+            print(colored("Nama atau pin salah.", "red"))
+    elif pilih == '3':
+        animasi_keluar()
+        print(colored("Terima kasih telah menggunakan layanan ATM. Sampai jumpa lagi!", "cyan"))
+        exit()
+
